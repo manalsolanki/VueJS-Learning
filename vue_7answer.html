@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	
+		<title>J1 Practice</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.formfield{margin-bottom:10px;}
+		</style>
+	</head>
+	<body>
+	<p> Telemarketer or not problem. <a href="https://cemc.uwaterloo.ca/contests/computing/2018/index.html">from the J1 problem hosted by the CCC.</a></p>
+	<div id="app">
+        <p>Enter last four digit of a phone number.It should be between 0 to 9.</p>
+		<div class="formfield">
+			<label>Fourth Last <label> <input v-model="fourth_last">
+		</div>
+		<div class="formfield">
+			<label>Third Last <label> <input v-model="third_last">
+		</div>
+		<div class="formfield">
+			<label>Second Last <label> <input v-model="second_last">
+		</div>
+        <div class="formfield">
+			<label>Last <label> <input v-model="last">
+		</div>
+		<div id="result">
+			<div><label>show diagnostics:</label><input type="checkbox" v-model="check_telemarker"></div>
+            <div  v-if="check_telemarker"><b>{{check_number}}: </b>Call  </div>
+		
+		</div>
+	</div>
+	
+	<script>
+	var app = new Vue({
+		el: '#app',
+		data:{
+			check_telemarker:false,
+			dog_name:"Barley",
+			fourth_last:0,
+			third_last:0,
+			second_last:0,
+            last:0,
+            telemarker_number : "false"
+		},
+		computed:{
+			check_number:function(){
+                if((this.fourth_last == 8 || this.fourth_last == 9) && (this.last == 8 || this.last == 9) && (this.second_last == this.third_last))
+                {
+                        return "Ignore";
+                }
+				else
+                {
+                    return "Answer"
+                }	
+			}
+		}
+	});
+	
+	</script>
+	<!--
+		In the above code we take last four digit, so to check wether the call is telemarker ot not this are the conditions.
+        1. Last digit is 8 or 9.
+        2. Fourth last digit is 8 or 9.
+        3. Middle two digits that is third last and second last are same.
+
+        For example :
+        1. 8779 - ignore call
+        2. 4778 - answer call
+	
+	-->
+	</body>
+</html>
